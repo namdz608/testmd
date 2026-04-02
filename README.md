@@ -75,6 +75,22 @@ Sau khi app đã được tạo, bạn có thể quay lại **Partner Dashboard*
 
 Lưu ý quan trọng: sau khi đã chọn `distribution method`, Shopify không cho đổi ngược lại, nên cần chọn đúng ngay từ đầu.
 
+### Cách tạo store để test app
+
+Nếu bạn chưa có store test, có thể tạo một `dev store` trong Shopify Partner như sau:
+
+1. Từ **Partner Dashboard**, chọn `Stores`.
+2. Nhấn `Add store`.
+3. Chọn `Create development store`.
+4. Nhập các thông tin cơ bản của store:
+   - tên store
+   - URL của store
+   - địa chỉ email quản trị
+   - khu vực hoặc thị trường muốn test
+5. Chọn mục đích sử dụng store, ví dụ để test app hoặc phát triển tính năng.
+6. Nhấn `Create development store`.
+7. Sau khi store được tạo xong, quay lại màn hình cài app và chọn store này ở bước `Install app`.
+
 ## 7. Lấy thông tin xác thực để dùng API
 
 Nếu mục tiêu của bạn là tích hợp hệ thống ngoài với Shopify, làm tiếp:
@@ -101,8 +117,28 @@ curl -X POST \
   -d "client_id=xxxxxxxxxx" \
   -d "client_secret=xxxxxxxx"
 ```
+- token lấy theo cách này có TTL khoảng 24 giờ và khi hết hạn thì gọi lại cùng token endpoint với cùng client credentials để lấy token mới.
 
-## 8. Link chính thức nên dùng
+## 8. Gọi Admin API bằng access token vừa lấy
+
+Sau khi đã lấy được access token, bạn có thể gọi Shopify Admin API như sau:
+
+```bash
+curl -X POST \
+  "https://bw2610.myshopify.com/admin/api/2026-04/graphql.json" \
+  -H "Content-Type: application/json" \
+  -H "X-Shopify-Access-Token: <ACCESS_TOKEN>" \
+  -d '{"query":"{ shop { name id } }"}'
+```
+
+Lưu ý:
+
+- thay `<ACCESS_TOKEN>` bằng token vừa lấy từ bước trước
+- endpoint trên đang dùng phiên bản API `2026-04`,Shopify đặt version theo dạng YYYY-MM, phát hành mỗi 3 tháng một lần; 2026-04 là version phát hành vào 01/04/2026.(https://shopify.dev/docs/api/usage/versioning)
+- câu query mẫu này dùng để kiểm tra nhanh token còn hiệu lực và app có gọi được Admin API hay chưa
+
+
+## 9. Link chính thức nên dùng
 
 - Trang đăng ký Shopify Partner: https://www.shopify.com/partners
 - Shopify Dev Docs: https://shopify.dev/
