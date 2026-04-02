@@ -117,6 +117,13 @@ curl -X POST \
   -d "client_id=xxxxxxxxxx" \
   -d "client_secret=xxxxxxxx"
 ```
+
+Response mẫu:
+
+```json
+{"access_token":"xxxx","scope":"read_analytics,write_app_proxy,write_assigned_fulfillment_orders,read_audit_events,read_customer_events,write_cart_transforms,read_all_cart_transforms,write_validations,write_cash_tracking","expires_in":86399}
+```
+
 - token lấy theo cách này có TTL khoảng 24 giờ và khi hết hạn thì gọi lại cùng token endpoint với cùng client credentials để lấy token mới.
 
 ## 8. Gọi Admin API bằng access token vừa lấy
@@ -136,6 +143,46 @@ Lưu ý:
 - thay `<ACCESS_TOKEN>` bằng token vừa lấy từ bước trước
 - endpoint trên đang dùng phiên bản API `2026-04`,Shopify đặt version theo dạng YYYY-MM, phát hành mỗi 3 tháng một lần; 2026-04 là version phát hành vào 01/04/2026.(https://shopify.dev/docs/api/usage/versioning)
 - câu query mẫu này dùng để kiểm tra nhanh token còn hiệu lực và app có gọi được Admin API hay chưa
+
+Response mẫu:
+
+```json
+{
+  "data": {
+    "shop": {
+      "name": "bw2610",
+      "id": "gid://shopify/Shop/77504020677"
+    }
+  },
+  "extensions": {
+    "cost": {
+      "requestedQueryCost": 1,
+      "actualQueryCost": 1,
+      "throttleStatus": {
+        "maximumAvailable": 2000.0,
+        "currentlyAvailable": 1999,
+        "restoreRate": 100.0
+      }
+    }
+  }
+}
+```
+
+Giải thích response:
+
+- `data.shop.name`: tên của store Shopify mà token đang truy cập được, ở đây là `bw2610`
+- `data.shop.id`: ID nội bộ của shop theo dạng GID của Shopify
+- `extensions.cost.requestedQueryCost`: chi phí dự kiến của query GraphQL
+- `extensions.cost.actualQueryCost`: chi phí thực tế đã bị trừ sau khi chạy query
+- `extensions.cost.throttleStatus.maximumAvailable`: tổng hạn mức query cost hiện có
+- `extensions.cost.throttleStatus.currentlyAvailable`: số điểm cost còn lại ngay sau lần gọi này
+- `extensions.cost.throttleStatus.restoreRate`: tốc độ hồi lại hạn mức mỗi giây
+
+Nếu bạn nhận được response như trên thì có nghĩa là:
+
+- access token hợp lệ
+- app đã gọi được Shopify Admin API
+- shop đích đã phản hồi thành công
 
 
 ## 9. Link chính thức nên dùng
