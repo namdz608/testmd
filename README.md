@@ -91,6 +91,17 @@ Nếu app của bạn dùng OAuth, bạn cũng cần khai báo đúng:
 - `Allowed redirection URL(s)`
 ![Màn hình tham khảo bổ sung trên Shopify](./shopify_img/SCR-20260402-iwsh.png)
 
+Ví dụ `curl` lấy access token:
+
+```bash
+curl -X POST \
+  "https://bw2610.myshopify.com/admin/oauth/access_token" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "grant_type=client_credentials" \
+  -d "client_id=f14d33312680834f3b9473250be918c4" \
+  -d "client_secret=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"
+```
+
 ## 8. Link chính thức nên dùng
 
 - Trang đăng ký Shopify Partner: https://www.shopify.com/partners
