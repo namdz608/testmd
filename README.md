@@ -62,7 +62,20 @@ Lưu ý: app cần có ít nhất một version thì mới có thể cài vào s
 
 Sau bước này, app đã được cài vào store để bạn test API, webhook, OAuth hoặc các chức năng backend.
 
-## 6. Lấy thông tin xác thực để dùng API
+## 6. Quay lại `App distribution` để chọn kiểu phân phối
+
+Sau khi app đã được tạo, bạn có thể quay lại **Partner Dashboard**:
+
+1. Vào `App distribution` -> `All apps`.
+2. Chọn app vừa tạo trong danh sách.
+3. Nếu Shopify yêu cầu, nhấn `Choose distribution`.
+4. Chọn một trong hai kiểu:
+   - `Public distribution`: dùng khi muốn đưa app lên Shopify App Store
+   - `Custom distribution`: dùng khi muốn phát hành app qua link cho một store hoặc một nhóm store cụ thể
+
+Lưu ý quan trọng: sau khi đã chọn `distribution method`, Shopify không cho đổi ngược lại, nên cần chọn đúng ngay từ đầu.
+
+## 7. Lấy thông tin xác thực để dùng API
 
 Nếu mục tiêu của bạn là tích hợp hệ thống ngoài với Shopify, làm tiếp:
 
@@ -76,21 +89,9 @@ Nếu app của bạn dùng OAuth, bạn cũng cần khai báo đúng:
 
 - `App URL`
 - `Allowed redirection URL(s)`
+![Màn hình tham khảo bổ sung trên Shopify](./shopify_img/SCR-20260402-iwsh.png)
 
-## 7. Quay lại `App distribution` để chọn kiểu phân phối
-
-Sau khi app đã được tạo, bạn có thể quay lại **Partner Dashboard**:
-
-1. Vào `App distribution` -> `All apps`.
-2. Chọn app vừa tạo trong danh sách.
-3. Nếu Shopify yêu cầu, nhấn `Choose distribution`.
-4. Chọn một trong hai kiểu:
-   - `Public distribution`: dùng khi muốn đưa app lên Shopify App Store
-   - `Custom distribution`: dùng khi muốn phát hành app qua link cho một store hoặc một nhóm store cụ thể
-
-Lưu ý quan trọng: sau khi đã chọn `distribution method`, Shopify không cho đổi ngược lại, nên cần chọn đúng ngay từ đầu.
-
-## 10. Link chính thức nên dùng
+## 8. Link chính thức nên dùng
 
 - Trang đăng ký Shopify Partner: https://www.shopify.com/partners
 - Shopify Dev Docs: https://shopify.dev/
