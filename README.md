@@ -1,4 +1,4 @@
-# Hướng dẫn tạo tài khoản và tạo app trên Shopify Partner
+# Hướng dẫn tạo tài khoản và tạo app, lấy access token và các authen liên quan trên Shopify Partner
 
 ## 1. Tạo tài khoản Shopify Partner
 
